@@ -1,0 +1,15 @@
+.nav {
+    grid-area: n;
+    background-color: brown;
+}
+
+.list {
+    list-style: none;
+}
+.list a {
+    text-decoration: none;
+    color: white;
+}
+.list a.activeLink {
+color: gold;
+}
