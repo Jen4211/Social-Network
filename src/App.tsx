@@ -12,10 +12,11 @@ import  { RootStateType } from './redux/state';
 
 type AppPropsType = {
   state: RootStateType
-  addPost: (newValue: string) => void
+  addPost: () => void
+  updateNewPostText: (newText: string) => void
 }
 
-const App:React.FC<AppPropsType> = ({state, addPost}) => {
+const App:React.FC<AppPropsType> = ({state, addPost,updateNewPostText}) => {
   return (
     <BrowserRouter>
       <div className="app_wrapper">
@@ -23,7 +24,7 @@ const App:React.FC<AppPropsType> = ({state, addPost}) => {
         <NavBar />
         <div className='app_wrapper_content'>
             <Route path="/dialogs" render={() => <Dialogs {...state.dialogsPage} />} />
-            <Route path="/profile" render={() => <Profile profilePage={state.profilePage} addPost={addPost}/>} />
+            <Route path="/profile" render={() => <Profile profilePage={state.profilePage} addPost={addPost} updateNewPostText={updateNewPostText}/>} />
             <Route path="/news" render={() => <News />} />
             <Route path="/music" render={() => <Music />} />
             <Route path="/settings" render={() => <Settings />} />

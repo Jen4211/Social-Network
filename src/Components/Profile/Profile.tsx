@@ -6,7 +6,8 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 type ProfilePropsType = {
   profilePage: ProfilePageType
-  addPost: (newValue: string)=> void
+  addPost: ()=> void
+  updateNewPostText: (newText: string) => void
 }
 
 const Profile: FC<ProfilePropsType> = (props) => {
@@ -14,7 +15,9 @@ const Profile: FC<ProfilePropsType> = (props) => {
     <div className={s.content}>
       <ProfileInfo />
       <MyPosts posts={props.profilePage.posts}
-      addPost={props.addPost}/>
+      newPostText={props.profilePage.newPostText}
+      addPost={props.addPost}
+      updateNewPostText={props.updateNewPostText}/>
     </div>
   )
 }
