@@ -8,23 +8,22 @@ import NavBar from './Components/NavBar/NavBar';
 import News from './Components/News/News';
 import Profile from './Components/Profile/Profile';
 import Settings from './Components/Settings/Settings';
-import  { RootStateType } from './redux/state';
+import  { ActionType, RootStateType } from './redux/state';
 
 type AppPropsType = {
   state: RootStateType
-  addPost: () => void
-  updateNewPostText: (newText: string) => void
+  dispatch: (action: ActionType) => void
 }
 
-const App:React.FC<AppPropsType> = ({state, addPost,updateNewPostText}) => {
+const App:React.FC<AppPropsType> = (props) => {
   return (
     <BrowserRouter>
       <div className="app_wrapper">
         <Header />
         <NavBar />
         <div className='app_wrapper_content'>
-            <Route path="/dialogs" render={() => <Dialogs {...state.dialogsPage} />} />
-            <Route path="/profile" render={() => <Profile profilePage={state.profilePage} addPost={addPost} updateNewPostText={updateNewPostText}/>} />
+            <Route path="/dialogs" render={() => <Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch}/>} />
+            <Route path="/profile" render={() => <Profile profilePage={props.state.profilePage} dispatch={props.dispatch}/>} />
             <Route path="/news" render={() => <News />} />
             <Route path="/music" render={() => <Music />} />
             <Route path="/settings" render={() => <Settings />} />
