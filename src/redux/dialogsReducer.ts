@@ -1,12 +1,26 @@
-import { ActionType, DialogsPageType, MessagesType } from "./state";
+import { ActionType, DialogsPageType} from "./state";
 
-export const dialogsReducer = (state: DialogsPageType, action: ActionType) => {
+const initislState:DialogsPageType = {
+    dialogs: [
+        { id: "1", name: "Jenia" },
+        { id: "2", name: "Sveta" },
+        { id: "3", name: "Hleb" }
+    ],
+    messages: [
+        { id: "1", message: "Hi" },
+        { id: "2", message: "How are you" },
+        { id: "3", message: "What do you do?" }
+    ],
+    newMessageBody: ''
+}
+
+export const dialogsReducer = (state: DialogsPageType = initislState, action: ActionType) => {
     switch (action.type) {
         case 'UPDATE-NEW-MESSAGE-TEXT':
             state.newMessageBody = action.newMessage;
             return state;
         case 'SEND-MESSAGE':
-            const newMessage: MessagesType = {
+            const newMessage = {
                 id: '4',
                 message: state.newMessageBody,
             }

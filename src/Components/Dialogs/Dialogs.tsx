@@ -1,23 +1,25 @@
 
 import { ChangeEvent } from 'react';
-import { sendMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/dialogsReducer';
-import { ActionType, DialogsPageType } from '../../redux/state';
+import { DialogsPageType } from '../../redux/state';
 import s from './Dialogs.module.css';
 import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
 
 type DialogsPropsType = {
-    dispatch: (action: ActionType) => void
-    dialogsPage: DialogsPageType
+    addMessage: ()=> void
+    onMessageChange: (message:string)=> void
+    dialogsPage : DialogsPageType
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
     const addMessage = () => {
-        props.dispatch(sendMessageActionCreator())
+        props.addMessage()
     }
     const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-props.dispatch(updateNewMessageTextActionCreator(e.currentTarget.value))
+props.onMessageChange(e.currentTarget.value)
     }
+    console.log(props.dialogsPage);
+    
 
     return (
         <div className={s.dialogs}>

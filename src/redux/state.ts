@@ -1,6 +1,6 @@
 
-import { dialogsReducer, sendMessageActionCreator, updateNewMessageTextActionCreator } from './dialogsReducer';
-import { addPostActionCreator, profileReducer, updateNewPostTextActionCreator } from './profileReduser';
+import {  sendMessageActionCreator, updateNewMessageTextActionCreator } from './dialogsReducer';
+import { addPostActionCreator, updateNewPostTextActionCreator } from './profileReduser';
 
 
 
@@ -32,10 +32,10 @@ export type RootStateType = {
     profilePage: ProfilePageType
 }
 
-type StoreType = {
+export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
-    _rerenderEntireTree: () => void
+    _collSubscriber: () => void
     subscribe: (observer: () => void) => void
     dispatch: (action: ActionType) => void
 }
@@ -44,47 +44,48 @@ export type ActionType = ReturnType<typeof addPostActionCreator>
 | ReturnType<typeof updateNewMessageTextActionCreator> 
 | ReturnType<typeof sendMessageActionCreator>
 
-export const store: StoreType = {
-    _state: {
-        dialogsPage: {
-            dialogs: [
-                { id: "1", name: "Jenia" },
-                { id: "2", name: "Sveta" },
-                { id: "3", name: "Hleb" }
-            ],
-            messages: [
-                { id: "1", message: "Hi" },
-                { id: "2", message: "How are you" },
-                { id: "3", message: "What do you do?" }
-            ],
-            newMessageBody: ''
-        },
-        profilePage: {
-            posts: [
-                { id: "1", message: 'Hi, how are you', count: 10 },
-                { id: "2", message: 'It\'s my first post', count: 15 }
-            ],
-            newPostText: 'your message'
-        }
+// export const store: StoreType = {
+//     _state: {
+//         dialogsPage: {
+//             dialogs: [
+//                 { id: "1", name: "Jenia" },
+//                 { id: "2", name: "Sveta" },
+//                 { id: "3", name: "Hleb" }
+//             ],
+//             messages: [
+//                 { id: "1", message: "Hi" },
+//                 { id: "2", message: "How are you" },
+//                 { id: "3", message: "What do you do?" }
+//             ],
+//             newMessageBody: ''
+//         },
+//         profilePage: {
+//             posts: [
+//                 { id: "1", message: 'Hi, how are you', count: 10 },
+//                 { id: "2", message: 'It\'s my first post', count: 15 }
+//             ],
+//             newPostText: 'your message'
+//         }
 
-    },
-    getState() {
-        return this._state
-    },
-    _rerenderEntireTree() {
+//     },
+//     getState() {
+//         return this._state
+//     },
+//     _collSubscriber() {
 
-    },
-    dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action);
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+//     },
+//     subscribe(observer) {
+//         this._collSubscriber = observer
+//     },
+//     dispatch(action) {
+//         this._state.profilePage = profileReducer(this._state.profilePage, action);
+//         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
 
-        this._rerenderEntireTree();
-    },
-    subscribe(observer) {
-        this._rerenderEntireTree = observer
-    }
-};
+//         this._collSubscriber(this._state);
+//     },
+   
+// };
 
 
 
-export default store;
+// export default store;
