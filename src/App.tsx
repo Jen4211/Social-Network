@@ -8,13 +8,12 @@ import NavBar from './Components/NavBar/NavBar';
 import News from './Components/News/News';
 import Profile from './Components/Profile/Profile';
 import Settings from './Components/Settings/Settings';
+import UsersContainer from './Components/Users/UsersContainer';
 
 
-type AppPropsType = {
 
-}
 
-const App: React.FC<AppPropsType> = (props) => {
+const App: React.FC = () => {
   return (
 
     <div className="app_wrapper">
@@ -23,6 +22,7 @@ const App: React.FC<AppPropsType> = (props) => {
       <div className='app_wrapper_content'>
         <Route path="/dialogs" render={() => <DialogsContainer />} />
         <Route path="/profile" render={() => <Profile  />} />
+        <Route path="/users" render={() => <UsersContainer  />} />
         <Route path="/news" render={() => <News />} />
         <Route path="/music" render={() => <Music />} />
         <Route path="/settings" render={() => <Settings />} />

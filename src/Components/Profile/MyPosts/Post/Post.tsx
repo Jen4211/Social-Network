@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { PostsType } from "../../../../redux/state";
+import { PostsType } from "../../../../redux/profileReducer";
 import s from "./Post.module.css"
 
 

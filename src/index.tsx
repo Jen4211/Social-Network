@@ -3,16 +3,11 @@ import './index.css';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-
 import { BrowserRouter } from 'react-router-dom';
-import { Provider } from './StoreContext/StoreContext';
 import store from './redux/redux-store';
-import { RootStateType } from './redux/state';
+import { Provider } from 'react-redux';
 
 
-
-
-export const rerenderEntireTree = (state:RootStateType) => {
 
     ReactDOM.render(
         <BrowserRouter>
@@ -22,16 +17,3 @@ export const rerenderEntireTree = (state:RootStateType) => {
         </BrowserRouter>, document.getElementById('root')
 
     );
-
-}
-
-
-rerenderEntireTree(store.getState());
-
-store.subscribe(() => {
-    let state = store.getState();
-    console.log(state);
-    rerenderEntireTree(state)
-    
-    
-})

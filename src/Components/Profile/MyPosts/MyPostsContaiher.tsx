@@ -1,42 +1,37 @@
 
 import { FC } from "react";
-import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../redux/profileReduser";
-import StoreContext from "../../../StoreContext/StoreContext";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { addPostActionCreator, InitialProfileStateType, updateNewPostTextActionCreator } from "../../../redux/profileReducer";
+import { AppStateType } from "../../../redux/redux-store";
+
 import MyPosts from "./MyPosts";
 
-
-type MyPostsContainerPropsType = {
-
+type mapStatePropsType = {
+    profilePage: InitialProfileStateType
 }
 
-const MyPostsContainer: FC<MyPostsContainerPropsType> = () => {
-
-
-    return (
-        <StoreContext.Consumer>
-            {(store) => {
-                 
-                const state = store.getState()
-
-                const addPost = () => {
-                    store.dispatch(addPostActionCreator());
-                }
-                const onPostChange = (text: string) => {
-                    store.dispatch(updateNewPostTextActionCreator(text))
-
-                }
-
-                return (
-                    <MyPosts addPost={addPost}
-                        onPostChange={onPostChange}
-                        posts={state.profilePage.posts}
-                        newPostText={state.profilePage.newPostText} />
-                )
-            }
-
-            }
-        </StoreContext.Consumer>
-    )
+type mapDispatchToPropsType = {
+    addPost: () => void
+    onPostChange: (text: string) => void
 }
 
+
+let mapStateToProps = (state: AppStateType): mapStatePropsType => {
+    return {
+        profilePage: state.profilePage
+    }
+}
+let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+    return {
+        addPost: () => {
+            dispatch(addPostActionCreator());
+        },
+        onPostChange: (text: string) => {
+            dispatch(updateNewPostTextActionCreator(text))
+        }
+    }
+}
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 export default MyPostsContainer;

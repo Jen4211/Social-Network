@@ -1,14 +1,15 @@
 
 import { ChangeEvent } from 'react';
-import { DialogsPageType } from '../../redux/state';
+import { InitislDialogsStateType } from '../../redux/dialogsReducer';
+
 import s from './Dialogs.module.css';
 import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
 
 type DialogsPropsType = {
-    addMessage: ()=> void
-    onMessageChange: (message:string)=> void
-    dialogsPage : DialogsPageType
+    addMessage: () => void
+    onMessageChange: (message: string) => void
+    dialogsPage: InitislDialogsStateType
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
@@ -16,10 +17,11 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
         props.addMessage()
     }
     const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-props.onMessageChange(e.currentTarget.value)
+        props.onMessageChange(e.currentTarget.value)
+        
     }
-    console.log(props.dialogsPage);
-    
+
+
 
     return (
         <div className={s.dialogs}>

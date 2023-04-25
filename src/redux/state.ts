@@ -1,29 +1,29 @@
 
 import {  sendMessageActionCreator, updateNewMessageTextActionCreator } from './dialogsReducer';
-import { addPostActionCreator, updateNewPostTextActionCreator } from './profileReduser';
+import { addPostActionCreator, updateNewPostTextActionCreator } from './profileReducer';
 
 
 
 
-export type DialogsType = {
+ type DialogsType = {
     id: string
     name: string
 }
-export type MessagesType = {
+ type MessagesType = {
     id?: string
     message: string
 }
-export type PostsType = {
+ type PostsType = {
     id?: string
     message: string
     count: number
 }
-export type DialogsPageType = {
+ type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
     newMessageBody: string
 }
-export type ProfilePageType = {
+ type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
 }
@@ -39,7 +39,7 @@ export type StoreType = {
     subscribe: (observer: () => void) => void
     dispatch: (action: ActionType) => void
 }
-export type ActionType = ReturnType<typeof addPostActionCreator> 
+ type ActionType = ReturnType<typeof addPostActionCreator> 
 | ReturnType<typeof updateNewPostTextActionCreator>
 | ReturnType<typeof updateNewMessageTextActionCreator> 
 | ReturnType<typeof sendMessageActionCreator>

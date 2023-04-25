@@ -1,14 +1,13 @@
 import { ChangeEvent } from "react";
 import { FC } from "react";
-import { PostsType, } from "../../../redux/state";
+import { InitialProfileStateType } from "../../../redux/profileReducer";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
 type MyPostPropsType = {
     addPost: ()=> void
     onPostChange: (text: string)=> void
-    posts: Array<PostsType>
-    newPostText: string
+    profilePage: InitialProfileStateType
 }
 
 const MyPosts: FC<MyPostPropsType> = (props) => {
@@ -26,11 +25,11 @@ const MyPosts: FC<MyPostPropsType> = (props) => {
             <div>
                 <textarea 
                  onChange={onPostChange}
-                 value={props.newPostText} />
+                 value={props.profilePage.newPostText} />
                 <button onClick={addPost}>Add Post</button>
             </div>
             <div>
-                {props.posts.map(p => {
+                {props.profilePage.posts.map(p => {
                     return (
                         <Post key={p.id} count={p.count} message={p.message} />
                     )
